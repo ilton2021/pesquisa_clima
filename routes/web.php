@@ -38,8 +38,8 @@ Route::middleware(['auth'])->group( function() {
     Route::get('/cadastroPerguntas/alterar/{id}', [App\Http\Controllers\PerguntasController::class, 'alterarPergunta'])->name('alterarPergunta');
     Route::get('/cadastroPerguntas/excluir/{id}', [App\Http\Controllers\PerguntasController::class, 'excluirPergunta'])->name('excluirPergunta');
     Route::post('/cadastroPerguntas/novo', [App\Http\Controllers\PerguntasController::class, 'storePerguntas'])->name('storePerguntas');
-    Route::post('/cadastroPerguntas/alterar/{id}', [App\Http\Controllers\PerguntasController::class, 'updatePergunta'])->name('updatePergunta');
-    Route::post('/cadastroPerguntas/excluir/{id}', [App\Http\Controllers\PerguntasController::class, 'destroyPergunta'])->name('destroyPergunta');
+    Route::post('/cadastroPerguntas/alterar/{id}', [App\Http\Controllers\PerguntasController::class, 'updatePerguntas'])->name('updatePerguntas');
+    Route::post('/cadastroPerguntas/excluir/{id}', [App\Http\Controllers\PerguntasController::class, 'destroyPerguntas'])->name('destroyPerguntas');
     //Categorias
     Route::get('/cadastroCategorias', [App\Http\Controllers\CategoriaController::class, 'cadastroCategorias'])->name('cadastroCategorias');
     Route::get('/cadastroCategorias/novo', [App\Http\Controllers\CategoriaController::class, 'cadastroNovaCategorias'])->name('cadastroNovaCategorias');

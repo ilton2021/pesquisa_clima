@@ -15,7 +15,7 @@
     <body id="page-top">
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <center><a class="navbar-brand" href="#page-top">Pesquisa de Clima</a></center>
+                <center><a class="navbar-brand" href="">Pesquisa de Clima</a></center>
             </div>
         </nav>
         <header class="masthead bg-primary text-white text-center">
@@ -32,7 +32,7 @@
         </header>
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
-             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0"><font size="6">Olá! Prezado colaborador</font></h2>
+             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0"><font size="6">Olá, Prezado colaborador</font></h2>
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
@@ -47,12 +47,12 @@
                     <div class="col-lg-12 ms-auto"><p class="lead" align="justify">A pesquisa de clima é um recurso para levantamento de informações, que orienta de forma relevante a percepção dos funcionários em relação à empresa.
                     Nossa expectativa é que você contribua para a constante melhoria em relação aos nossos processos e desenvolvimento das nossas estratégias corporativas, desta forma, responda de forma transparente, baseado em fatos e dados de acordo com a sua experiência dentro da empresa.
                     <br>Essa é uma ferramenta sigilosa e que não fornecerá dados sobre quem responde, mas, apresentará o resultado geral do que está sendo avaliado.
-                    <br><center>Contamos com a sua colaboração,</center> 
-                    <br><center>Equipe de Recursos Humanos.</center></P></DIV>
+                    <br><center><b>Contamos com a sua colaboração,</b></center> 
+                    <br><center><b>Equipe de Recursos Humanos.</b></center></P></DIV>
                 </div>
                 <div class="text-center mt-4">
                     <a class="btn btn-xl btn-outline-light btn-success" href="{{ route('usuario_unidade') }}">
-                        Clique aqui para realizar a Pesquisa!
+                      <b>  Clique aqui para realizar a Pesquisa! </b>
                     </a>
                 </div>
             </div>

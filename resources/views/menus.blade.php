@@ -15,7 +15,7 @@
     <body id="page-top">
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"><font size="4">Pesquisa de Clima - Menu Principal</font></a>
+                <a class="navbar-brand" href=""><font size="4">Pesquisa de Clima - Menu Principal</font></a>
             </div>
             @if(Auth::check())
              <a class="nav-link" href="{{ url('/') }}" method="GET">Sair</a>
@@ -38,21 +38,21 @@
                   </thead>
                   <tbody>
                    <tr> 
-                    <td> Cadatro Perguntas </td>
+                    <td> Cadastro Perguntas </td>
                     <td> <a href="{{ route('cadastroPerguntas') }}" class="btn btn-ml btn-info" value="Perguntas">Perguntas </a> </td>
-                    <td> Cadatro Respostas </td>
+                    <td> Cadastro Respostas </td>
                     <td> <a href="{{ route('cadastroRespostas') }}" class="btn btn-ml btn-info" value="Respostas">Respostas </a> </td>
                    </tr>
                    <tr> 
-                    <td> Cadatro Categorias </td>
+                    <td> Cadastro Categorias </td>
                     <td> <a href="{{ route('cadastroCategorias') }}" class="btn btn-ml btn-info" value="Categorias">Categorias </a> </td>
-                    <td> Cadatro Unidades </td>
+                    <td> Cadastro Unidades </td>
                     <td> <a href="{{ route('cadastroUnidades') }}" class="btn btn-ml btn-info" value="Unidades">Unidades </a> </td>
                    </tr>
                    <tr> 
-                    <td> Cadatro Gestores </td>
+                    <td> Cadastro Gestores </td>
                     <td> <a href="{{ route('cadastroGestores') }}" class="btn btn-ml btn-info" value="Gestores">Gestores </a> </td>
-                    <td> Cadatro Usuários </td>
+                    <td> Cadastro Usuários </td>
                     <td> <a href="{{ route('cadastroUsuarios') }}" class="btn btn-ml btn-info" value="Usuarios">Usuários </a> </td>
                    </tr>
                   </tbody>
@@ -63,4 +63,9 @@
         <script src="js/scripts.js"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
+    <style>
+            a{
+                width: 100px;
+        }
+        </style>
 </html>

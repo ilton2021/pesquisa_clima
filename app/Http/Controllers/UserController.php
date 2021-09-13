@@ -57,32 +57,29 @@ class UserController extends Controller
 	public function Login(Request $request)
 	{
 		$input = $request->all(); 		
-		$v = \Validator::make($request->all(), [
+		$validator = Validator::make($request->all(), [
 			'email'    => 'required|email',
             'password' => 'required'
 		]);		
-		if ($v->fails()) {
-			$failed = $v->failed(); 
-			if ( !empty($failed['email']['Required']) ) {
-				\Session::flash('mensagem', ['msg' => 'O campo e-mail é obrigatório!','class'=>'green white-text']);
-			} else if ( !empty($failed['email']['Email']) ) {
-				\Session::flash('mensagem', ['msg' => 'Este e-mail é inválido!','class'=>'green white-text']);
-			} else if ( !empty($failed['password']['Required']) ) {
-				\Session::flash('mensagem', ['msg' => 'O campo nome é obrigatório!','class'=>'green white-text']);
-			}
-			$text = false;
-			return view('auth.login', compact('text')); 
+		if ($validator->fails()) {
+
+			return view('auth.login', compact())
+			->withErrors($validator)
+            ->withInput(session()->flashInput($request->input()));
+
 		} else {
 			$email = $input['email'];
 			$senha = $input['password'];		
 			$user = User::where('email', $email)->get();
 			$qtd = sizeof($user); 			
 			if ( empty($qtd) ) {
-				\Session::flash('mensagem', ['msg' => 'Login Inválido!','class'=>'green white-text']);
-				$text = true;
-				return view('auth.login', compact('text')); 	
-			} else {
-				$text = true;
+
+				$validator = "Logín inválido, verifique os campos e preencha novamente!";
+				return view('auth.login', compact())
+				->withErrors($validator)
+				->withInput(session()->flashInput($request->input()));
+
+				} else {
 				$unidades = $this->unidade->all();
 				Auth::login($user);
 				return view('home', compact('unidades','user')); 						
@@ -93,26 +90,17 @@ class UserController extends Controller
 	public function resetarSenha(Request $request)
 	{
 		$input = $request->all();		
-		$v = \Validator::make($request->all(), [
+		$validator = Validator::make($request->all(), [
 			'email'    => 'required|email',
             'password' => 'required|same:password_confirmation',
 			'password_confirmation' => 'required'
     	]);		
-		if ($v->fails()) {
-			$failed = $v->failed(); 
-			if ( !empty($failed['email']['Required']) ) {
-				\Session::flash('mensagem', ['msg' => 'O campo e-mail é obrigatório!','class'=>'green white-text']);
-			} else if ( !empty($failed['email']['Email']) ) {
-				\Session::flash('mensagem', ['msg' => 'Este e-mail é inválido!','class'=>'green white-text']);
-			} else if ( !empty($failed['password']['Required']) ) {
-				\Session::flash('mensagem', ['msg' => 'O campo nome é obrigatório!','class'=>'green white-text']);
-			} else if ( !empty($failed['password']['Same']) ) {
-				\Session::flash('mensagem', ['msg' => 'O campo senha e confirmar senha não são iguais!','class'=>'green white-text']);
-			} else if ( !empty($failed['password_confirmation']['Required']) ) {
-				\Session::flash('mensagem', ['msg' => 'O campo confirmar senha é obrigatório!','class'=>'green white-text']);
-			}
-			$text = true;
-			return view('auth.passwords/reset', compact('text'));
+		if ($validator->fails()) {
+			
+			return view('auth.passwords/reset', compact())
+			->withErrors($validator)
+			->withInput(session()->flashInput($request->input()));
+
 		} else {
 			if(!empty($input['password'])){ 
 				$input['password'] = Hash::make($input['password']);
@@ -122,50 +110,37 @@ class UserController extends Controller
 			$email = $input['email'];
 			$user = User::find(5);
 			$user->update($input);
-			$text = true;
-			\Session::flash('mensagem', ['msg' => 'Senha alterado com sucesso!','class'=>'green white-text']);
 			$unidades = $this->unidade->all();
-			$text = false;
-			return view('home', compact('unidades','user','text')); 						
+			$validator = "Senha Alterada com Sucesso!";
+			return view('home', compact('unidade','user'))
+			->withErrors($validator)
+			->withInput(session()->flashInput($request->input()));						
 		}
 	}
 	
     public function store(Request $request)
     {
 		$input = $request->all();
-		$v = \Validator::make($request->all(), [
+		$validator = Validator::make($request->all(), [
 			'name'     		   => 'required',
             'email'    		   => 'required|email|unique:users,email',
             'password' 		   => 'required|same:password_confirmation',
 			'password_confirmation' => 'required'
     	]);			 
-		if ($v->fails()) {
-			$failed = $v->failed(); 
-			if ( !empty($failed['name']['Required']) ) {
-				\Session::flash('mensagem', ['msg' => 'O campo nome é obrigatório!','class'=>'green white-text']);
-			} else if ( !empty($failed['email']['Required']) ) {
-				\Session::flash('mensagem', ['msg' => 'O campo e-mail é obrigatório!','class'=>'green white-text']);
-			} else if ( !empty($failed['email']['Email']) ) {
-				\Session::flash('mensagem', ['msg' => 'Este e-mail é inválido!','class'=>'green white-text']);
-			} else if ( !empty($failed['email']['Unique']) ) {
-				\Session::flash('mensagem', ['msg' => 'Este e-mail já foi cadastrado!','class'=>'green white-text']);
-			} else if ( !empty($failed['password']['Required']) ) {
-				\Session::flash('mensagem', ['msg' => 'O campo nome é obrigatório!','class'=>'green white-text']);
-			} else if ( !empty($failed['password']['Same']) ) {
-				\Session::flash('mensagem', ['msg' => 'O campo senha e confirmar senha não são iguais!','class'=>'green white-text']);
-			} else if ( !empty($failed['password_confirmation']['Required']) ) {
-				\Session::flash('mensagem', ['msg' => 'O campo confirmar senha é obrigatório!','class'=>'green white-text']);
-			} else if ( !empty($failed['roles']['Required']) ) {
-				\Session::flash('mensagem', ['msg' => 'O campo confirmar senha é obrigatório!','class'=>'green white-text']);
-			}
-			$text = true;
-			return view('auth.register', compact('text'));
+		if ($validator->fails()) {
+		
+			return view('auth.register', compact())
+			->withErrors($validator)
+			->withInput(session()->flashInput($request->input()));
+
 		} else {
 			$input['password'] = Hash::make($input['password']);
 			$user = User::create($input);
-			\Session::flash('mensagem', ['msg' => 'Usuário cadastrado com sucesso!','class'=>'green white-text']);
 			$unidades = $this->unidade->all();
-			return view('welcome', compact('unidades')); 						
+			$validator = "Usuário Cadastrado com Sucesso!";
+			return view('welcome', compact('unidades'))
+			->withErrors($validator)
+			->withInput(session()->flashInput($request->input()));
 		}
     }
 

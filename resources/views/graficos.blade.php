@@ -15,7 +15,7 @@
     <body id="page-top">
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"><font size="4">Pesquisa de Clima - Gráficos</font></a>
+                <a class="navbar-brand" href=""><font size="4">Pesquisa de Clima - Gráficos</font></a>
             </div>
         </nav>
         <section class="page-section portfolio" id="portfolio">
@@ -37,15 +37,21 @@
 				@endif
                 <table class="table" border="0">     
                  <tr>
-                  <td width="500px"> <center><a href="{{ route('graficos1') }}"><img class="img-fluid" src="{{ asset('assets/img/graficos.jpg') }}" width="80" height="80" />  Média Total da Unidade das Notas dos Três Pilares</a></center> </td>
-                  <td> <center><a href="{{ route('graficos2') }}"><img class="img-fluid" src="{{ asset('assets/img/graficos.jpg') }}" width="80" height="80" />  Média de Cada Pilar da Unidade</a></center> </td>   
+                  <td width="500px" > <center><b><a href="{{ route('graficos1') }}"><img class="img-fluid" src="{{ asset('assets/img/grafico.png') }}" width="60" height="60"  />  Média Total da Unidade das Notas dos Três Pilares</a></b></center> </td>
+                  </tr>
+                  <tr>
+
+                  <td colspan ="2"> <center><b><a  href="{{ route('graficos2') }}"><img class="img-fluid" src="{{ asset('assets/img/grafico.png') }}" width="60" height="60" />  Média de Cada Pilar da Unidade</a></b></center> </td>   
                  </tr>
                  <tr> 
-                  <td> <center><a href="{{ route('graficos3') }}"><img class="img-fluid" src="{{ asset('assets/img/graficos.jpg') }}" width="80" height="80" />  Média de Cada Item de Cada Pilar por Unidade</a></center> </td>   
-                  <td> <center><a href="{{ route('graficos4') }}"><img class="img-fluid" src="{{ asset('assets/img/graficos.jpg') }}" width="80" height="80" />  Média de Cada Pilar Geral de Todas as Unidades do HCP Gestão</a></center> </td>   
+                  <td> <center><b><a href="{{ route('graficos3') }}"><img class="img-fluid" src="{{ asset('assets/img/grafico.png') }}" width="60" height="60" />  Média de Cada Item de Cada Pilar por Unidade</a></b></center> </td>   
+                  </tr>
+                  <tr>
+
+                  <td> <center><b><a href="{{ route('graficos4') }}"><img class="img-fluid" src="{{ asset('assets/img/grafico.png') }}" width="60" height="60" />  Média de Cada Pilar Geral de Todas as Unidades do HCP Gestão</a></b></center> </td>   
                  </tr>
                  <tr> 
-                  <td colspan="2"> <center><a href="{{ route('graficos5') }}"><img class="img-fluid" src="{{ asset('assets/img/graficos.jpg') }}" width="80" height="80" /> Média por Gestor de Cada Unidade</a></center> </td>   
+                  <td colspan="2"> <center><b><a href="{{ route('graficos5') }}"><img class="img-fluid" src="{{ asset('assets/img/grafico.png') }}" width="60" height="60" /> Média por Gestor de Cada Unidade</a></b></center> </td>   
                  </tr>
                 </table>   
             </div>
@@ -54,4 +60,11 @@
         <script src="js/scripts.js"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
+  <style>
+      a{
+          color: #2d4a58;
+      }
+      </style>
+
+
 </html>

@@ -38,7 +38,7 @@
     <body id="page-top">
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"><font size="4">Pesquisa de Clima - Gráficos</font></a>
+                <a class="navbar-brand" href=""><font size="4">Pesquisa de Clima - Gráficos</font></a>
             </div>
         </nav>
         <section class="page-section portfolio" id="portfolio">
@@ -54,7 +54,7 @@
 				@endif
                 <table class="table" border="0">     
                  <tr>
-                  <td width="500px"> <center><img class="img-fluid" src="{{ asset('assets/img/graficos.jpg') }}" width="80" height="80" />  Média de Cada Pilar Geral de Todas as Unidades do HCP Gestão</center> </td>
+                  <td width="500px"> <center><img class="img-fluid" src="{{ asset('assets/img/grafico.png') }}" width="60" height="60" /><b>  Média de Cada Pilar Geral de Todas as Unidades do HCP Gestão</b> </center> </td>
                  </tr>
                 </table>
                 <center> 

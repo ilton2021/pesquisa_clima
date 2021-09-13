@@ -50,7 +50,6 @@ class UsuarioController extends Controller
             'matricula' => 'required|max:255'
 		]);
         if ($validator->fails()) {
-			$text = true;
 			return view('usuarios/novo_usuarios', compact('unidades','gestores'))
 				  ->withErrors($validator)
                   ->withInput(session()->flashInput($request->input()));
@@ -75,7 +74,6 @@ class UsuarioController extends Controller
 			'nome' => 'required|max:255',
 		]);
         if ($validator->fails()) {
-			$text = true;
 			return view('usuarios/alterar_usuarios', compact('unidades','gestores','usuarios'))
 				  ->withErrors($validator)
                   ->withInput(session()->flashInput($request->input()));
@@ -97,8 +95,9 @@ class UsuarioController extends Controller
         $usuarios = $usuarios->delete($input);
         $usuarios = Usuario::all();
         $unidades = Unidade::all();
+        $gestores = Gestor::all();
         $validator = "Usuário Excluído com Sucesso!!";
-        return view('usuarios/cadastro_usuarios', compact('usuarios','unidades'))
+        return view('usuarios/cadastro_usuarios', compact('usuarios','unidades','gestores'))
 				  ->withErrors($validator)
                   ->withInput(session()->flashInput($request->input()));
     }

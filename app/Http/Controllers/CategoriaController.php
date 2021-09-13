@@ -38,7 +38,6 @@ class CategoriaController extends Controller
 			'descricao' => 'required|max:255',
 		]);
         if ($validator->fails()) {
-			$text = true;
 			return view('categorias/novo_categorias')
 				  ->withErrors($validator)
                   ->withInput(session()->flashInput($request->input()));

@@ -231,7 +231,6 @@ class HomeController extends Controller
           'matricula' => 'required',
         ]);
             if ($validator->fails()) {
-              $text = true;
               return view('usuario_unidade', compact('unidades'))
                   ->withErrors($validator)
                   ->withInput(session()->flashInput($request->input()));

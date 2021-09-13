@@ -15,7 +15,7 @@
     <body id="page-top">
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"><font size="4">Pesquisa de Clima</font></a>
+                <a class="navbar-brand" href="{{ route('verificarUsuario')}}"><font size="4">Pesquisa de Clima</font></a>
             </div>
         </nav>
         <section class="page-section portfolio" id="portfolio">
@@ -38,9 +38,9 @@
                 <?php $id_us = $usuario[0]->id; ?>    
                 <table class="table" border="0">     
                  <tr>
-                  <td width="400px"> <center><a href="{{ route('pesquisaRH', $id_us) }}"><img class="img-fluid" src="{{ asset('assets/img/portfolio/rh.png') }}" alt="..." />RECURSOS HUMANOS</a></center> </td>
-                  <td> <center><a href="{{ route('pesquisaEstrutura', $id_us) }}"><img class="img-fluid" src="{{ asset('assets/img/portfolio/empresa.png') }}" alt="..." /> ESTRUTURA</a></center> </td>   
-                  <td> <center><a href="{{ route('pesquisaGestao', $id_us) }}"><img class="img-fluid" src="{{ asset('assets/img/portfolio/gestor.png') }}" alt="..." /> GESTÃO</a></center> </td>   
+                  <td width="400px"> <center><b><a href="{{ route('pesquisaRH', $id_us) }}"><img class="img-fluid" src="{{ asset('assets/img/recursos-humanos.png') }}" width="70" height="70" alt="..." />RECURSOS HUMANOS</a></b></center> </td>
+                  <td> <center><b><a href="{{ route('pesquisaEstrutura', $id_us) }}"><img class="img-fluid" src="{{ asset('assets/img/base-militar.png') }}" width="70" height="70" alt="..." /> ESTRUTURA</a></b></center> </td>   
+                  <td> <center><b><a href="{{ route('pesquisaGestao', $id_us) }}"><img class="img-fluid" src="{{ asset('assets/img/gestao-de-talentos.png') }}" width="70" height="70" alt="..." /> GESTÃO</a></b></center> </td>   
                  </tr>
                 </table>   
             </div>
@@ -49,4 +49,9 @@
         <script src="js/scripts.js"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
+    <style>
+      a{
+          color: #2d4a58;
+      }
+      </style>
 </html>

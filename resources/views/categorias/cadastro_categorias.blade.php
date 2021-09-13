@@ -15,7 +15,7 @@
     <body id="page-top">
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"><font size="4">Pesquisa de Clima - Cadastro Categorias</font></a>
+                <a class="navbar-brand" href=""><font size="4">Pesquisa de Clima - Cadastro Categorias</font></a>
             </div>
         </nav>
         <section class="page-section portfolio" id="portfolio">

@@ -45,7 +45,6 @@ class GestorController extends Controller
             'perfil' => 'required|max:255'
        ]);
         if ($validator->fails()) {
-			$text = true;
 			return view('gestores/novo_gestores', compact('unidades'))
 				  ->withErrors($validator)
                   ->withInput(session()->flashInput($request->input()));
@@ -68,7 +67,6 @@ class GestorController extends Controller
             'perfil' => 'required|max:255'
 		]);
         if ($validator->fails()) {
-			$text = true;
 			return view('gestores/alterar_gestores', compact('unidades'))
 				  ->withErrors($validator)
                   ->withInput(session()->flashInput($request->input()));

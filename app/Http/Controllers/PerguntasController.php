@@ -72,8 +72,9 @@ class PerguntasController extends Controller
             $perguntas = Perguntas::find($id);
             $perguntas = $perguntas->update($input);
             $perguntas = Perguntas::all();
+            $categorias = Categoria::all();
             $validator = "Pergunta Alterada com Sucesso!!";
-            return view('perguntas/cadastro_perguntas', compact('perguntas'))
+            return view('perguntas/cadastro_perguntas', compact('perguntas','categorias'))
 				  ->withErrors($validator)
                   ->withInput(session()->flashInput($request->input()));
         }
@@ -85,8 +86,9 @@ class PerguntasController extends Controller
         $perguntas = Perguntas::find($id);
         $perguntas = $perguntas->delete($input);
         $perguntas = Perguntas::all();
+        $categorias = Categoria::all();
         $validator = "Pergunta Excluída com Sucesso!!";
-        return view('perguntas/cadastro_perguntas', compact('perguntas'))
+        return view('perguntas/cadastro_perguntas', compact('perguntas','categorias'))
 				  ->withErrors($validator)
                   ->withInput(session()->flashInput($request->input()));
     }

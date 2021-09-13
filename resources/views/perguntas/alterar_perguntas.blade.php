@@ -15,7 +15,7 @@
     <body id="page-top">
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"><font size="4">Pesquisa de Clima - Alterar Perguntas</font></a>
+                <a class="navbar-brand" href=""><font size="4">Pesquisa de Clima - Alterar Perguntas</font></a>
             </div>
         </nav>
         <section class="page-section portfolio" id="portfolio">
@@ -46,11 +46,17 @@
                    <tr>
                     <td> CATEGORIA: </td>
                     <td>
+                    <select style="width:100px;" class="form-control" id="categoria_id" name="categoria_id" >
                       @foreach($categorias as $cat) 
                        @if($cat->id == $perguntas[0]->categoria_id)
-                        <input type="text" readonly="true" id="categoria_id" name="categoria_id" class="form-control" value="<?php echo $cat->descricao; ?>" /> 
-                       @endif
-                      @endforeach
+                             <option id="categoria_id" name="categoria_id" value="<?php echo $cat->id; ?>" selected> {{ $cat->descricao }} </option>
+                        
+                            @else
+                              <option id="categoria_id" name="categoria_id" value="<?php echo $cat->id; ?>"> {{ $cat->descricao }} </option>
+                              
+                              @endif
+                      @endforeach   
+                    </select>
                     </td>
                    </tr>
                   </thead>
