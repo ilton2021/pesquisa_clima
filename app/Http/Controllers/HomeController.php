@@ -12,6 +12,7 @@ use App\Models\Comentario;
 use App\Models\Categoria;
 use Validator;
 use DB;
+use Mail;
 
 class HomeController extends Controller
 {
@@ -250,17 +251,51 @@ class HomeController extends Controller
         }
     }
 
-    public function pesquisaRH($id)
+    public function pesquisaRH($id, Request $request)
     {
+        $unidades = Unidade::all();
         $usuario = Usuario::where('id',$id)->get();
         $perguntas = Perguntas::where('categoria_id',1)->get();
-        return view('pesquisa/pesquisaRH', compact('perguntas','usuario'));
-    }
+        
+        $validacao = DB::table('perguntas_respostas')
+        -> select('usuario_id','categoria_id')
+        -> where('usuario_id','=', $id)
+        -> where('categoria_id' ,'=', '1')
+        -> get();
+
+        $qtd = sizeof($validacao);
+
+        if($qtd >0){
+          
+          $validator = 'Você já realizou essa pesquisa!';
+          return view('pesquisa', compact('unidades','usuario'))
+          ->withErrors($validator)
+          ->withInput(session()->flashInput($request->input()));
+
+          
+        }else{
+
+          return view('pesquisa/pesquisaRH', compact('perguntas','usuario'));
+        
+        }
+
+
+  }
 
     public function storePergRH($id, Request $request)
     {
         $input = $request->all();
         $usuario = Usuario::where('id',$id)->get();
+
+        $usermail = DB::table('usuario')
+	    	->select('nome','funcao')
+        ->where('id','=', $id)
+        ->get();  
+
+        $nome = $usermail[0]->nome;
+        $funcao = $usermail[0]->funcao;
+
+
         $input['usuario_id'] = $usuario[0]->id;
         $input['unidade_id'] = $usuario[0]->unidade_id;
         $input['gestor_id']  = $usuario[0]->gestor_id; 
@@ -324,11 +359,21 @@ class HomeController extends Controller
               }
             }
         }
+
         if($resp == 1){
+
+                
+               Mail::send('emails/emailpesquisarh', ['nome' => $nome,'funcao' => $funcao], function($m) use($usermail){
+                  $m->from('portal@hcpgestao.org.br', 'Pesquisa de Clima');
+                  $m->subject('Pesquisa de Clima Concluída!');
+                  $m->to('janaina.lima@hcpgestao.org.br');
+                  });		
+           
           $validator = "Pesquisa Realizada com Sucesso!!";
           return view('pesquisa', compact('usuario'))
 				    ->withErrors($validator)
             ->withInput(session()->flashInput($request->input()));
+              
         } else {
           $usuario = Usuario::where('id',$id)->get();
           $perguntas = Perguntas::where('categoria_id',1)->get();
@@ -339,17 +384,47 @@ class HomeController extends Controller
         }
     }   
 
-    public function pesquisaEstrutura($id)
+    public function pesquisaEstrutura($id, Request $request)
     {
+        $unidades = Unidade::all();
         $usuario = Usuario::where('id',$id)->get();
         $perguntas = Perguntas::where('categoria_id',2)->get();
-        return view('pesquisa/pesquisaEstrutura', compact('perguntas','usuario'));
+
+        $validacao = DB::table('perguntas_respostas')
+        -> select('usuario_id','categoria_id')
+        -> where('usuario_id','=', $id)
+        -> where('categoria_id' ,'=', '2')
+        -> get();
+
+        $qtd = sizeof($validacao);
+
+        if($qtd > 2){
+
+          $validator = 'Você já realizou essa pesquisa!';
+          return view('pesquisa', compact('unidades','usuario'))
+          ->withErrors($validator)
+          ->withInput(session()->flashInput($request->input()));
+          
+        }else{
+          return view('pesquisa/pesquisaEstrutura', compact('perguntas','usuario'));
+        }
+
     }
 
     public function storePergEstrutura($id, Request $request)
     {
         $input = $request->all();
         $usuario = Usuario::where('id',$id)->get();
+        $gestor = Gestor::where('id',$usuario[0]->gestor_id)->get();
+        $usermail = DB::table('usuario')
+	    	->select('nome','funcao')
+        ->where('id','=', $id)
+        ->get();    
+
+        $nome = $usermail[0]->nome;
+        $funcao = $usermail[0]->funcao;
+
+
         $input['usuario_id'] = $usuario[0]->id;
         $input['unidade_id'] = $usuario[0]->unidade_id;
         $input['gestor_id']  = $usuario[0]->gestor_id; 
@@ -414,6 +489,13 @@ class HomeController extends Controller
             }
         }
         if($resp == 1){
+
+          Mail::send('emails/emailpesquisaestrutura', ['nome' => $nome,'funcao' => $funcao], function($m) use($usermail){
+            $m->from('portal@hcpgestao.org.br', 'Pesquisa de Clima');
+            $m->subject('Pesquisa de Clima Concluída!');
+            $m->to('janaina.lima@hcpgestao.org.br');
+            });		
+
           $validator = "Pesquisa Realizada com Sucesso!!";
           return view('pesquisa', compact('usuario'))
             ->withErrors($validator)
@@ -428,17 +510,54 @@ class HomeController extends Controller
         }
     }
 
-    public function pesquisaGestao($id)
+    public function pesquisaGestao($id, Request $request)
     {
+        $unidades = Unidade::all();
         $usuario = Usuario::where('id',$id)->get();
         $perguntas = Perguntas::where('categoria_id',3)->get();
-        return view('pesquisa/pesquisaGestao', compact('perguntas','usuario'));
+
+        $gestores = DB::table('usuario')
+        ->join('gestor', 'gestor.id', '=', 'usuario.gestor_id')
+	    	->select('gestor.nome')
+	    	->where('usuario.id', '=' ,$id)
+        ->get();  
+
+        $validacao = DB::table('perguntas_respostas')
+        -> select('usuario_id','categoria_id')
+        -> where('usuario_id','=', $id)
+        -> where('categoria_id' ,'=', '3')
+        -> get();
+
+        $qtd = sizeof($validacao);
+
+        if($qtd > 0){
+
+          $validator = 'Você já realizou essa pesquisa!';
+          return view('pesquisa', compact('unidades','usuario'))
+          ->withErrors($validator)
+          ->withInput(session()->flashInput($request->input()));
+          
+        }else{
+          return view('pesquisa/pesquisaGestao', compact('perguntas','usuario','gestores'));
+        }
+
     }
 
     public function storePergGestao($id, Request $request)
     {
         $input = $request->all();
         $usuario = Usuario::where('id',$id)->get();
+        $gestor = Gestor::where('id',$usuario[0]->gestor_id)->get();
+
+        $usermail = DB::table('usuario')
+	    	->select('nome','funcao')
+        ->where('id','=', $id)
+        ->get();  
+
+        $nome = $usermail[0]->nome;
+        $funcao = $usermail[0]->funcao;
+
+
         $input['usuario_id'] = $usuario[0]->id;
         $input['unidade_id'] = $usuario[0]->unidade_id;
         $input['gestor_id']  = $usuario[0]->gestor_id; 
@@ -503,6 +622,14 @@ class HomeController extends Controller
             }
         }
         if($resp == 1){
+
+          
+          Mail::send('emails/emailpesquisagestor', ['nome' => $nome,'funcao' => $funcao], function($m) use($usermail){
+            $m->from('portal@hcpgestao.org.br', 'Pesquisa de Clima');
+            $m->subject('Pesquisa de Clima Concluída!');
+            $m->to('janaina.lima@hcpgestao.org.br');
+            });			
+
           $validator = "Pesquisa Realizada com Sucesso!!";
           return view('pesquisa', compact('usuario'))
             ->withErrors($validator)
