@@ -6,7 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Unidade;
 use App\Models\Gestor;
+use App\Models\Perguntas;
+use App\Models\PerguntasRespostas;
+use App\Models\Departamento;
+use DB;
 use Validator;
+
+
 
 class UsuarioController extends Controller
 {
@@ -22,16 +28,18 @@ class UsuarioController extends Controller
     {
         $unidades = Unidade::all();
         $usuarios = Usuario::all();
-        $gestores = Gestor::where('unidade_id',1)->get();
-        return view('usuarios/novo_usuarios', compact('unidades','gestores'));
+        $departamentos = Departamento::all();
+        $gestores = Gestor::all();
+        return view('usuarios/novo_usuarios', compact('unidades','gestores','departamentos'));
     }
 
     public function alterarUsuarios($id)
     {
+        $departamentos = Departamento::all();
         $unidades = Unidade::all();
         $usuarios = Usuario::where('id', $id)->get();
         $gestores = Gestor::all();
-        return view('usuarios/alterar_usuarios', compact('usuarios','unidades','gestores'));
+        return view('usuarios/alterar_usuarios', compact('usuarios','unidades','gestores','departamentos'));
     }
 
     public function excluirUsuarios($id)
@@ -101,4 +109,40 @@ class UsuarioController extends Controller
 				  ->withErrors($validator)
                   ->withInput(session()->flashInput($request->input()));
     }
+
+
+    public function pesquisarUsuario(Request $request){
+
+        $input = $request->all();
+        $usuarios = Usuario::all();
+        $unidades = Unidade::all();
+        $gestores = Gestor::all();
+		if(empty($input['pesq'])) { $input['pesq'] = ""; }
+
+        $pesquisa = $input['pesq2'];
+        $pesq = $input['pesq'];
+
+        if($pesquisa == "nome"){
+			$usuarios = Usuario::where('nome','like','%'.$pesq.'%')->get();
+
+            
+	    	} elseif($pesquisa == "matricula"){
+                $usuarios = Usuario::where('matricula','like','%'.$pesq.'%')->get();
+
+
+                } elseif($pesquisa == "gestor"){
+                    $gestores = Gestor::where('nome','like','%'.$pesq.'%')->get();
+
+
+                    }else{
+                            $usuarios = Usuario::all();
+
+                    }
+         $gestores = Gestor::all();
+         return view('usuarios/cadastro_usuarios', compact('usuarios','unidades','gestores'));
+
+    }
+
+    
+
 }

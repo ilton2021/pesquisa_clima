@@ -39,22 +39,28 @@
                   <tbody>
                    <tr> 
                     <td> Cadastro Perguntas </td>
-                    <td> <a href="{{ route('cadastroPerguntas') }}" class="btn btn-ml btn-info" value="Perguntas">Perguntas </a> </td>
+                    <td> <a href="{{ route('cadastroPerguntas') }}" class="btn btn-outline-dark" value="Perguntas">Perguntas </a> </td>
                     <td> Cadastro Respostas </td>
-                    <td> <a href="{{ route('cadastroRespostas') }}" class="btn btn-ml btn-info" value="Respostas">Respostas </a> </td>
+                    <td> <a href="{{ route('cadastroRespostas') }}" class="btn btn-outline-dark" value="Respostas">Respostas </a> </td>
                    </tr>
                    <tr> 
                     <td> Cadastro Categorias </td>
-                    <td> <a href="{{ route('cadastroCategorias') }}" class="btn btn-ml btn-info" value="Categorias">Categorias </a> </td>
+                    <td> <a href="{{ route('cadastroCategorias') }}" class="btn btn-outline-dark" value="Categorias">Categorias </a> </td>
                     <td> Cadastro Unidades </td>
-                    <td> <a href="{{ route('cadastroUnidades') }}" class="btn btn-ml btn-info" value="Unidades">Unidades </a> </td>
+                    <td> <a href="{{ route('cadastroUnidades') }}" class="btn btn-outline-dark" value="Unidades">Unidades </a> </td>
                    </tr>
                    <tr> 
                     <td> Cadastro Gestores </td>
-                    <td> <a href="{{ route('cadastroGestores') }}" class="btn btn-ml btn-info" value="Gestores">Gestores </a> </td>
+                    <td> <a href="{{ route('cadastroGestores') }}" class="btn btn-outline-dark" value="Gestores">Gestores </a> </td>
                     <td> Cadastro Usuários </td>
-                    <td> <a href="{{ route('cadastroUsuarios') }}" class="btn btn-ml btn-info" value="Usuarios">Usuários </a> </td>
+                    <td> <a href="{{ route('cadastroUsuarios') }}" class="btn btn-outline-dark" value="Usuarios">Usuários </a> </td>
                    </tr>
+                   <tr> 
+                    <td> Respostas Colaboradores: </td>
+                    <td> <a href="{{ route('respostasPesquisa') }}" class="btn btn-outline-dark" value="Gestores">Respostas </a> </td>
+                    <td> Cadastro Departamentos: </td>
+                    <td> <a href="{{ route('cadastroDepartamento') }}" class="btn btn-outline-dark" value="Gestores">Departamentos </a> </td>
+                  </tr>
                   </tbody>
                 </table>
             </div>
@@ -65,7 +71,7 @@
     </body>
     <style>
             a{
-                width: 100px;
+                width: 150px;
         }
         </style>
 </html>

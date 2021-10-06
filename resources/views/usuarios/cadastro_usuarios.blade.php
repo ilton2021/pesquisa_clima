@@ -11,8 +11,34 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+	    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
     </head>
+    <script type="text/javascript">
+
+        function data(valor) {
+                var x = document.getElementById('pesq2'); 
+                var y = x.options[x.selectedIndex].text;  
+                if(y == "Nome") {
+                    document.getElementById('pesq').disabled = false;
+                    document.getElementById('pesq').hidden   = false;
+                } else if(y == "Matrícula"){
+                    document.getElementById('pesq').disabled = false;
+                    document.getElementById('pesq').hidden   = false;
+                } else if(y == "Gestor"){
+                    document.getElementById('pesq').disabled = false;
+                    document.getElementById('pesq').hidden   = false;
+                }
+            }
+
+            
+        
+        
+</script>
     <body id="page-top">
+    
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href=""><font size="4">Pesquisa de Clima - Cadastro Usuários</font></a>
@@ -35,6 +61,27 @@
 					</ul>
 				  </div>
 				@endif
+                <form action="{{route('pesquisarUsuario')}}" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                <table>
+                    <tr>
+                            <td>Escolha uma Opção:</td>
+                                 <td> 
+                                    <select class="form-control" id="pesq2" name="pesq2" onchange="data('sim')">
+                                    <option id="pesq2" name="pesq2" value="">Selecione...</option>
+                                    <option id="pesq2" name="pesq2" value="nome">Nome</option>	 
+                                    <option id="pesq2" name="pesq2" value="matricula">Matrícula</option> 
+                                    <option id="pesq2" name="pesq2" value="gestor">Gestor</option>
+                                
+                                  </select>	
+                             </td>
+                        <td> <input class="form-control" type="text" id="pesq" name="pesq" disabled required> </td>
+                		<td> <input type="submit" style="color:white;" class="btn btn-info btn-sm" style="margin-top: 5px;" value="Pesquisar" id="Salvar" name="Salvar" /> </td>
+
+                     </tr>
+                    </table>
+                 </form>
                 <p align="right"><a href="{{ route('menus') }}" class="btn btn-ml btn-warning" value="Voltar" style="color: #FFFFFF;">Voltar<i class="fas fa-undo-alt"></i></a>
                 <a href="{{ route('cadastroNovoUsuario') }}" class="btn btn-ml btn-dark" value="Novo">Novo<i class="fas fa-check"></i></a></p>
                 <table class="table">
@@ -78,4 +125,11 @@
         <script src="js/scripts.js"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
+
+  
+
+
 </html>
+
+
+

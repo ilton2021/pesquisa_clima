@@ -16,6 +16,11 @@
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href=""><font size="4">Pesquisa de Clima - Perguntas ESTRUTURA</font></a>
+                <a class="navbar-brand" href=""><font size="4">
+                @foreach ($usuario as $user)
+                       {{$user->nome}}
+                    @endforeach
+                </font></a>
             </div>
         </nav>
         <?php $id_us = $usuario[0]->id; ?> 
@@ -66,7 +71,7 @@
                  </tbody>
                  <td colspan="7"> <br><p align="right">
                    <a href="{{ route('pesquisa', $id_us) }}" class="btn btn-warning btn-sm" value="Voltar">Voltar</a>
-                   <input type="submit" class="btn btn-success btn-sm" value="Salvar" id="Salvar" name="Salvar" /> </p>
+                   <input type="submit" maxlength="4000" class="btn btn-success btn-sm" value="Salvar" id="Salvar" name="Salvar" /> </p>
                  </td>
                  <td hidden>
                  <input type="text" id="unidade_id" name="unidade_id" value="" />

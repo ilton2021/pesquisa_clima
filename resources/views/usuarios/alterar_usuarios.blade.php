@@ -75,6 +75,20 @@
                      </select> 
                     </td>
                    </tr>
+                   <tr> 
+                    <td> DEPARTAMENTO: </td>
+                    <td> 
+                     <select id="departamento_id" name="departamento_id" class="form-control" width="200px">
+                      @foreach($departamentos as $dep)
+                       @if($dep->id == $usuarios[0]->departamento_id)
+                        <option id="departamento_id" name="departamento_id" value="<?php echo $dep->id; ?>" selected>{{ $dep->nome }}</option>
+                       @else
+                        <option id="departamento_id" name="unidade_id" value="<?php echo $dep->id; ?>">{{ $dep->nome }}</option>
+                       @endif
+                      @endforeach
+                     </select> 
+                    </td>
+                   </tr>
                   </thead>
                    <tr> 
                     <td colspan="2"> <br><p align="right">

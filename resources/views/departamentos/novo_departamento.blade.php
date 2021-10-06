@@ -35,49 +35,18 @@
                   </ul>
                   </div>
                 @endif 
-                <form action="{{\Request::route('storeGestores')}}" method="POST">
+                <form action="{{\Request::route('storeDepartamento')}}" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <table class="table">
                     <thead>
-                     <tr> 
-                      <td> NOME: </td>
-                      <td> <input type="text" id="nome" name="nome" class="form-control" width="400px" /> </td>
-                     </tr>
-                     <tr>
-                      <td> PERFIL: </td>
-                      <td> 
-                       <select id="perfil" name="perfil" class="form-control">
-                        <option id="perfil" name="perfil" value="Supervisor">Supervisor</option>
-                        <option id="perfil" name="perfil" value="Coordenador">Coordenador</option>
-                        <option id="perfil" name="perfil" value="Gerente">Gerente</option>
-                        <option id="perfil" name="perfil" value="Diretor">Diretor</option>
-                       </select>
-                      </td>
-                     </tr>
-                     <tr> 
-                      <td> UNIDADE: </td>
-                      <td> 
-                       <select id="unidade_id" name="unidade_id" class="form-control" width="200px">
-                        @foreach($unidades as $unidade)
-                         <option id="unidade_id" name="unidade_id" value="<?php echo $unidade->id; ?>">{{ $unidade->nome }}</option>
-                        @endforeach
-                       </select> 
-                      </td>
-                    </tr>
                     <tr>
                       <td> DEPARTAMENTO </td>
-                      <td> 
-                       <select id="departamento_id" name="departamento_id" class="form-control" width="200px">
-                        @foreach($departamentos as $departamento)
-                         <option id="departamento_id" name="departamento_id" value="<?php echo $departamento->id; ?>">{{ $departamento->nome }}</option>
-                        @endforeach
-                       </select> 
-                      </td>
+                      <td> <input type="text" id="nome" name="nome" class="form-control" width="400px" /> </td>
                      </tr>
                     </thead>
                      <tr> 
                       <td colspan="2"> <br><p align="right">
-                       <a href="{{ route('cadastroGestores') }}" class="btn btn-warning btn-sm" value="Voltar">Voltar</a>
+                       <a href="{{ route('cadastroDepartamento') }}" class="btn btn-warning btn-sm" value="Voltar">Voltar</a>
                        <input type="submit" class="btn btn-success btn-sm" value="Salvar" id="Salvar" name="Salvar" /> </p>
                       </td>
                      </tr>

@@ -66,6 +66,16 @@
                          @endforeach
                        </select> 
                       </td>
+                      </tr>
+                      <tr>
+                      <td> DEPARTAMENTO: </td>
+                      <td>
+                       <select id="departamento_id" name="departamento_id" class="form-control" width="200">
+                         @foreach($departamentos as $departamento)
+                          <option id="departamento_id" name="departamento_id" value="<?php echo $departamento->id; ?>">{{ $departamento->nome }}</option>
+                         @endforeach
+                       </select> 
+                      </td>
                      </tr>
                     </thead>
                      <tr> 

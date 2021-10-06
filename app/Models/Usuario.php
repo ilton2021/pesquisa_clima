@@ -15,6 +15,7 @@ class Usuario extends Model
         'nome',
         'matricula',
         'gestor_id',
+        'departamento_id',
         'unidade_id',
         'created_at',
         'updated_at'

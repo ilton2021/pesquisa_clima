@@ -72,6 +72,9 @@ Route::middleware(['auth'])->group( function() {
     Route::post('/cadastroUsuarios/novo', [App\Http\Controllers\UsuarioController::class, 'storeUsuarios'])->name('storeUsuarios');
     Route::post('/cadastroUsuarios/alterar/{id}', [App\Http\Controllers\UsuarioController::class, 'updateUsuarios'])->name('updateUsuarios');
     Route::post('/cadastroUsuarios/excluir/{id}', [App\Http\Controllers\UsuarioController::class, 'destroyUsuarios'])->name('destroyUsuarios');
+    Route::post('/cadastroUsuarios', [App\Http\Controllers\UsuarioController::class, 'pesquisarUsuario'])->name('pesquisarUsuario');
+
+
     //Gestores
     Route::get('/cadastroGestores', [App\Http\Controllers\GestorController::class, 'cadastroGestores'])->name('cadastroGestores');
     Route::get('/cadastroGestores/novo', [App\Http\Controllers\GestorController::class, 'cadastroNovoGestor'])->name('cadastroNovoGestor');
@@ -80,5 +83,23 @@ Route::middleware(['auth'])->group( function() {
     Route::post('/cadastroGestores/novo', [App\Http\Controllers\GestorController::class, 'storeGestores'])->name('storeGestores');
     Route::post('/cadastroGestores/alterar/{id}', [App\Http\Controllers\GestorController::class, 'updateGestores'])->name('updateGestores');
     Route::post('/cadastroGestores/excluir/{id}', [App\Http\Controllers\GestorController::class, 'destroyGestores'])->name('destroyGestores');
+
+    //Resultados
+    Route::get('/resultadosColaboradores', [App\Http\Controllers\PerguntasRespostasController::class, 'respostasPesquisa'])->name('respostasPesquisa');
+    Route::get('/resultadosColaboradores/{userID}/{categoria}/', [App\Http\Controllers\PerguntasRespostasController::class, 'resposta'])->name('resposta');
+    Route::post('/resultadosColaboradores', [App\Http\Controllers\PerguntasRespostasController::class, 'resultadoUsuariosPesq'])->name('resultadoUsuariosPesq');
+    Route::post('/resultadosColaboradores/{userID}/{categoria}/', [App\Http\Controllers\PerguntasRespostasController::class, 'resposta'])->name('resposta');
+
+    //Departamento
+    Route::get('/cadastroDepartamentos', [App\Http\Controllers\DepartamentoController::class, 'cadastroDepartamento'])->name('cadastroDepartamento');
+    Route::get('/cadastroDepartamentos/novo', [App\Http\Controllers\DepartamentoController::class, 'cadastroNovoDepartamento'])->name('cadastroNovoDepartamento');
+    Route::get('/cadastroDepartamentos/alterar/{id}', [App\Http\Controllers\DepartamentoController::class, 'alterarDepartamento'])->name('alterarDepartamento');
+    Route::get('/cadastroDepartamentos/excluir/{id}', [App\Http\Controllers\DepartamentoController::class, 'excluirDepartamento'])->name('excluirDepartamento');
+    Route::post('/cadastroDepartamentos/novo', [App\Http\Controllers\DepartamentoController::class, 'storeDepartamento'])->name('storeDepartamento');
+    Route::post('/cadastroDepartamentos/alterar/{id}', [App\Http\Controllers\DepartamentoController::class, 'updateDepartamento'])->name('updateDepartamento');
+    Route::post('/cadastroDepartamentos/excluir/{id}', [App\Http\Controllers\DepartamentoController::class, 'destroyDepartamento'])->name('destroyDepartamento');
+    Route::post('/cadastroDepartamento', [App\Http\Controllers\DepartamentoController::class, 'pesquisarDepartamento'])->name('pesquisarDepartamento');  
+
+    
 
 });

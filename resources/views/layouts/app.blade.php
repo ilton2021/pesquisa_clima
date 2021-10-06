@@ -13,16 +13,13 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+       <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-            
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                    </ul>
+                <a class="navbar-brand"><font size="4">Pesquisa de Clima - HCP Gestão</font></a>
+                
+        </nav>
+                   
 
-                    <ul class="navbar-nav ml-auto">
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">

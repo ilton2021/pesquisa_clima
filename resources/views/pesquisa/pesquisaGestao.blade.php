@@ -16,16 +16,26 @@
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href=""><font size="4">Pesquisa de Clima - Perguntas GESTÃO</font></a>
+                <a class="navbar-brand" href=""><font size="4"
+                >
+                @foreach($gestores as $gestor)
+                    @foreach ($usuario as $user)
+                       {{$user->nome}} -> {{ $gestor->nome}} 
+                    @endforeach
+            @endforeach   
+          </font></a>
+                    
             </div>
         </nav>
         <section class="page-section portfolio" id="portfolio">
-            <div class="container"><br><br>
-                <h4 class="page-section-heading text-center text-uppercase text-secondary mb-0"><font size="5">Perguntas - GESTÃO</font></h4>
-                <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div> <?php $a = 0; ?>
+          <div class="container"><br><br>
+          <h4 class="page-section-heading text-center text-uppercase text-secondary mb-0"><font size="5">Perguntas - GESTÃO</font></h4>
+          <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+          </div> <?php $a = 0; ?>
+          
                 <?php $id_us = $usuario[0]->id; ?>
                 @if ($errors->any())
 				  <div class="alert alert-danger">
@@ -66,7 +76,7 @@
                  </tbody>
                  <td colspan="7"> <br><p align="right">
                    <a href="{{ route('pesquisa', $id_us) }}" class="btn btn-warning btn-sm" value="Voltar">Voltar</a>
-                   <input type="submit" class="btn btn-success btn-sm" value="Salvar" id="Salvar" name="Salvar" /> </p>
+                   <input type="submit" maxlength="4000" class="btn btn-success btn-sm" value="Salvar" id="Salvar" name="Salvar" /> </p>
                  </td>
                  <td hidden>
                  <input type="text" id="unidade_id" name="unidade_id" value="" />

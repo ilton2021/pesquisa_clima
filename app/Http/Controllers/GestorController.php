@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Gestor;
 use App\Models\Unidade;
+use App\Models\Departamento;
 use Validator;
 
 class GestorController extends Controller
@@ -20,7 +21,8 @@ class GestorController extends Controller
     {
         $unidades = Unidade::all();
         $gestores = Gestor::all();
-        return view('gestores/novo_gestores', compact('unidades'));
+        $departamentos = Departamento::all();
+        return view('gestores/novo_gestores', compact('unidades','departamentos'));
     }
 
     public function alterarGestores($id)
@@ -39,6 +41,8 @@ class GestorController extends Controller
     public function storeGestores(Request $request)
     {
         $input = $request->all();
+        $departamento = Departamento::all();
+
         $unidades = Unidade::all();
         $validator = Validator::make($request->all(), [
 			'nome'   => 'required|max:255',
@@ -52,7 +56,7 @@ class GestorController extends Controller
             $gestores = Gestor::create($input);
             $gestores = Gestor::all();
             $validator = "Gestor Cadastrado com Sucesso!!";
-            return view('gestores/cadastro_gestores', compact('gestores','unidades'))
+            return view('gestores/cadastro_gestores', compact('gestores','unidades','departamento'))
 				  ->withErrors($validator)
                   ->withInput(session()->flashInput($request->input()));
         }

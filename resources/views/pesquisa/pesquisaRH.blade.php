@@ -16,6 +16,11 @@
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href=""><font size="4">Pesquisa de Clima - Perguntas RH</font></a>
+                <a class="navbar-brand" href=""><font size="4">
+                @foreach ($usuario as $user)
+                       {{$user->nome}}
+                    @endforeach
+                </font></a>
             </div>
         </nav>
         <section class="page-section portfolio" id="portfolio">
@@ -60,7 +65,7 @@
                   <td> <center> <input type="checkbox" id="ind_<?php echo $a ?>" name="ind_<?php echo $a ?>" /> </center> </td>
                   <td> <center> <input type="checkbox" id="sa_<?php echo $a ?>" name="sa_<?php echo $a ?>" /> </center> </td>
                   <td> <center> <input type="checkbox" id="ms_<?php echo $a ?>" name="ms_<?php echo $a ?>" /> </center> </td>
-                  <td> <input type="text" id="comentario_<?php echo $a ?>" name="comentario_<?php echo $a ?>" class="form-control" /> </td>
+                  <td> <input type="text" maxlength="4000" id="comentario_<?php echo $a ?>" name="comentario_<?php echo $a ?>" class="form-control" /> </td>
                  </tr>
                  @endforeach
                  </tbody>

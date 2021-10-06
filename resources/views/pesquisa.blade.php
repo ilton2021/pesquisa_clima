@@ -16,6 +16,11 @@
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('verificarUsuario')}}"><font size="4">Pesquisa de Clima</font></a>
+                <a class="navbar-brand" href=""><font size="4">
+                @foreach ($usuario as $user)
+                       {{$user->nome}}
+                    @endforeach
+                </font></a>
             </div>
         </nav>
         <section class="page-section portfolio" id="portfolio">
@@ -25,6 +30,7 @@
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                     <div class="divider-custom-line"></div>
+                    
                 </div>
                 @if ($errors->any())
 				  <div class="alert alert-success">
@@ -42,7 +48,14 @@
                   <td> <center><b><a href="{{ route('pesquisaEstrutura', $id_us) }}"><img class="img-fluid" src="{{ asset('assets/img/base-militar.png') }}" width="70" height="70" alt="..." /> ESTRUTURA</a></b></center> </td>   
                   <td> <center><b><a href="{{ route('pesquisaGestao', $id_us) }}"><img class="img-fluid" src="{{ asset('assets/img/gestao-de-talentos.png') }}" width="70" height="70" alt="..." /> GESTÃO</a></b></center> </td>   
                  </tr>
+                 <tr>                          
+                     <td></td>  
+                     <td><center> <a href="usuario_gestor" class="btn btn-warning btn-sm" value="Voltar">Voltar</a> </center></td>
+                     <td></td>  
+
+                </tr>
                 </table>   
+
             </div>
         </section>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -51,7 +64,7 @@
     </body>
     <style>
       a{
-          color: #2d4a58;
+          color: #80c52e;
       }
       </style>
 </html>
