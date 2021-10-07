@@ -59,6 +59,38 @@
                                       @endforeach
                                     </select> 
                                   </td>
+                                  
+                                 </tr>
+                                
+                                 <tr> 
+                                  <td> PERFIL: </td>
+                                  <td> 
+                                    <select id="perfil" name="perfil" class="form-control" width="200px">
+                                      @foreach($gestores as $get)
+                                       @if($get->perfil != "")
+                                        <option id="perfil" name="perfil" value="<?php echo $get->id; ?>" selected>{{ $get->perfil }}</option>
+                                       @else
+                                       <option id="perfil" name="perfil" value="<?php echo $get->id; ?>">{{ $get->perfil }}</option>
+                                       @endif
+                                      @endforeach
+                                    </select> 
+                                  </td>
+
+                                 </tr>
+                                 <tr> 
+                                  <td> DEPARTAMENTO: </td>
+                                  <td> 
+                                    <select id="departamento_id" name="departamento_id" class="form-control" width="200px">
+                                      @foreach($departamentos as $dep)
+                                       @if($dep->id == $gestores[0]->departamento_id)
+                                        <option id="departamento_id" name="departamento_id" value="<?php echo $dep->id; ?>" selected>{{ $dep->nome }}</option>
+                                       @else
+                                       <option id="departamento_id" name="departamento_id" value="<?php echo $dep->id; ?>">{{ $dep->nome }}</option>
+                                       @endif
+                                      @endforeach
+                                    </select> 
+                                  </td>
+
                                  </tr>
                                 </thead>
                                 <tr> 

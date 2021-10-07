@@ -27,9 +27,10 @@ class GestorController extends Controller
 
     public function alterarGestores($id)
     {
+        $departamentos = Departamento::all();
         $unidades = Unidade::all();
         $gestores = Gestor::where('id', $id)->get();
-        return view('gestores/alterar_gestores', compact('gestores','unidades'));
+        return view('gestores/alterar_gestores', compact('gestores','unidades','departamentos'));
     }
 
     public function excluirGestores($id)
